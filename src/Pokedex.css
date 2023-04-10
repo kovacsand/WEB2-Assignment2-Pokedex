@@ -184,7 +184,7 @@ body {
 	background-color: var(--main-screen-bg-color);
 	border: solid black 2px;
 	border-radius: 5%;
-	background-image: url(https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png);
+	/* background-image: url(https://assets.pokemon.com/assets/cms2/img/pokedex/full/002.png); */
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -447,6 +447,7 @@ body {
 	border: black 1.5px solid;
 	background-color: var(--square-buttons-color);
 	box-shadow: inset -2px -2px #3298cb;
+
 }
 
 /* center buttons */
@@ -508,6 +509,20 @@ body {
 .facing-right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
+}
+
+.small-pokemon-clickable {	
+	/* background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"); */
+	/* background-color: red; */
+	/* background-image: url("https://amymhaddad.s3.amazonaws.com/morocco-blue.png"); */
+	
+	background-size: 100% 100%;
+
+    border-width: 0px;
+    display: inline-block;
+    padding: 13px 14px 9px 12px;
+	transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
 }
 
 .center-right-container {

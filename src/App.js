@@ -33,48 +33,51 @@ function App() {
   const displayCurrent10Pokemon = (current10Pokemon) => {
     for (let i = 0; i < current10Pokemon.length; i++) {
       let url = current10Pokemon[i].url;
-      fetchPokemon(url);
+      fetchPokemon(url, loadSmallSprite);
     }
   }
 
-  const fetchPokemon = (url) => {
+  const fetchPokemon = (url, action) => {
     fetch(url)
       .then(response => {
         if (!response.ok) throw new Error('Network response was not ok');
         return response.json();
       })
 
-      .then(pokemon => loadSmallSprite(pokemon))
+      .then(pokemon => action(pokemon))
       .catch(error => console.log("Error: " + error))
   }
 
   const loadSmallSprite = (pokemon) => {
-    let image = new Image();
-    image.src = pokemon.sprites.front_default;
-
-    image.style.objectFit = "contain";
-    image.style.objectPosition = "center";
-    image.style.margin = "auto";
-    image.style.display = "block";
-    // image.style.width = "24px";
-    // image.style.height = "10px";
-    image.style.width = "100%";
-    image.style.height = "100%";
-
     let id = pokemon.id % 10;
       if (id === 0) id = 10;
     const pokemonDiv = document.getElementById(`pokemon${id}`);
     pokemonDiv.innerHTML = "";
-    pokemonDiv.appendChild(image);
+
+    let clickable = document.createElement("div");
+    clickable.id = `clickable${id}`;
+    clickable.className = "small-pokemon-clickable";
+    clickable.addEventListener("click", () => loadSelectedPokemon(pokemon));
+  
+    clickable.style.backgroundImage = `url(${pokemon.sprites.front_default})`;
+    pokemonDiv.appendChild(clickable);
+  }
+
+  const loadSelectedPokemon = (pokemon) => {
+    console.log(pokemon);
+
+    const mainScreen = document.getElementById("main-screen");
+    mainScreen.innerHTML = "";
+    mainScreen.style.backgroundImage = `url(${pokemon.sprites.front_default})`;
+
+    const type1 = document.getElementById("type1-screen");
+    type1.innerHTML = pokemon.types[0].type.name;
+    const type2 = document.getElementById("type2-screen");
+    type2.innerHTML = pokemon.types[1] ? pokemon.types[1].type.name : "";
+
   }
 
   return (
-    // <div classNameName="App">
-    //   <header classNameName="App-header">
-    //     <h2>Current Pokemon: {pokemon?.name}</h2>
-    //     <GetPokemonButton callback={updatePokemon}/>
-    //   </header>
-    // </div>
     <PokedexGrid arrowFunction={changePage} pageNumber={pageNumber} />
   );
 }
@@ -245,8 +248,8 @@ function PokedexGrid({ arrowFunction, pageNumber }) {
           </div>
           {/* Bottom screens */}
           <div className="bottom-screens-container">
-            <div id="type-screen" className="right-panel-screen">grass</div>
-            <div id="id-screen" className="right-panel-screen">#1</div>
+            <div id="type1-screen" className="right-panel-screen"></div>
+            <div id="type2-screen" className="right-panel-screen"></div>
           </div>
         </div>
       </div>
