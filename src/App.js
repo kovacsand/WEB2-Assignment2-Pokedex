@@ -66,15 +66,38 @@ function App() {
   const loadSelectedPokemon = (pokemon) => {
     console.log(pokemon);
 
+    const glitchButton = document.getElementById("mew-glitch");
+    glitchButton.innerHTML = "";
+
     const mainScreen = document.getElementById("main-screen");
     mainScreen.innerHTML = "";
     mainScreen.style.backgroundImage = `url(${pokemon.sprites.front_default})`;
 
-    const type1 = document.getElementById("type1-screen");
-    type1.innerHTML = pokemon.types[0].type.name;
-    const type2 = document.getElementById("type2-screen");
-    type2.innerHTML = pokemon.types[1] ? pokemon.types[1].type.name : "";
+    const name = document.getElementById("name-screen");
+    name.innerHTML = "#" + pokemon.id + "<br>" +  pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
 
+    const about = document.getElementById("about-screen");
+    about.style.fontSize = "8.5px";
+    about.innerHTML = `Height: ${pokemon.height * 10} cm Weight: ${pokemon.weight / 10} kg`;
+
+    const type1 = document.getElementById("type1-screen");
+    type1.innerHTML = pokemon.types[0].type.name.toUpperCase();
+    const type2 = document.getElementById("type2-screen");
+    type2.innerHTML = pokemon.types[1] ? pokemon.types[1].type.name.toUpperCase() : "";
+
+    if (pokemon.name === "mew") {
+      about.style.fontSize = "6px";
+      about.innerHTML = "So rare that it is still said to be a mirage by many experts. Only a few people have seen it worldwide."
+    }
+
+    if (pokemon.id === 79) {
+      const glitchButton = document.getElementById("mew-glitch");
+      glitchButton.innerHTML = "m̸̘̪̼̬̊͜e̶̩̔̂͠w̸̰̌";
+      glitchButton.addEventListener("click", () => {
+        const mewUrl = "https://pokeapi.co/api/v2/pokemon/mew"
+        fetchPokemon(mewUrl, loadSelectedPokemon);
+      });
+    }
   }
 
   return (
@@ -143,7 +166,7 @@ function PokedexGrid({ arrowFunction, pageNumber }) {
           {/* Bottom Buttons */}
           <div className="buttons-container">
             <div className="upper-buttons-container">
-              <div className="big-button"></div>
+              <div id="mew-glitch" className="big-button"></div>
               <div className="long-buttons-container">
                 <div className="long-button red"></div>
                 <div className="long-button light-blue"></div>
@@ -155,7 +178,7 @@ function PokedexGrid({ arrowFunction, pageNumber }) {
                 <div>.</div>
               </div>
               <div className="green-screen">
-                <span id="name-screen">bulbasaur</span>
+                <span id="name-screen"></span>
               </div>
               <div className="right-nav-container">
                 <div className="nav-button">
@@ -199,9 +222,7 @@ function PokedexGrid({ arrowFunction, pageNumber }) {
           </div>
           {/* Top screen  */}
           <div className="top-screen-container">
-            <div id="about-screen" className="right-panel-screen">
-              Height: 70cm Weight: 6.9kg
-            </div>
+            <div id="about-screen" className="right-panel-screen"></div>
           </div>
           {/* Blue Buttons */}
           <div className="square-buttons-container">

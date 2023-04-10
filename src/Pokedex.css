@@ -4,12 +4,12 @@
 */
 
 :root {
-	--main-bg-color: #fe0065;
+	--main-bg-color: #dc0a2d;
 	--secondary-bg-color: #f2f2f2;
 	--main-screen-bg-color: #98cb98;
 	--secondary-screen-bg-color: #9e9d9d;
 	--main-buttons-color: #585858;
-	--square-buttons-color: #7ca9f7;
+	--square-buttons-color: #1d94e4;
 }
 
 .red {
@@ -235,6 +235,14 @@ body {
 	margin-left: 7px;
 }
 
+#mew-glitch {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 8px;
+	font-weight: 600;
+}
+
 .long-button {
 	width: 35px;
 	height: 2px;
@@ -257,7 +265,7 @@ body {
 	width: 100%;
 	font-family: "Press Start 2P", cursive;
 	text-align: center;
-	font-size: 8.5px;
+	font-size: 8px;
 	overflow-wrap: break-word;
 }
 
@@ -428,6 +436,12 @@ body {
 	line-height: 2;
 }
 
+#type1-screen, #type2-screen {
+	font-size: 8px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
 /* square buttons grid */
 .square-buttons-container {
 	display: flex;
@@ -446,7 +460,7 @@ body {
 	border-radius: 2px;
 	border: black 1.5px solid;
 	background-color: var(--square-buttons-color);
-	box-shadow: inset -2px -2px #3298cb;
+	box-shadow: inset -2px -2px #026495;
 
 }
 
@@ -512,12 +526,7 @@ body {
 }
 
 .small-pokemon-clickable {	
-	/* background-image: url("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"); */
-	/* background-color: red; */
-	/* background-image: url("https://amymhaddad.s3.amazonaws.com/morocco-blue.png"); */
-	
 	background-size: 100% 100%;
-
     border-width: 0px;
     display: inline-block;
     padding: 13px 14px 9px 12px;
@@ -548,15 +557,17 @@ body {
 	border-radius: 50%;
 	border: solid 2px black;
 	margin-left: 7px;
+	background-color: #e0c203;
 }
 
 #pageNumber {
-    margin-top: 8px;
+	font-family: "Press Start 2P", cursive;
+    margin-top: 11px;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 6px;
-    font-weight: 600;
+    font-size: 3px;
+    font-weight: 800;
 }
 
 /* bottom screens */
