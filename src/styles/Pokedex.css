@@ -461,7 +461,7 @@ body {
 	border: black 1.5px solid;
 	background-color: var(--square-buttons-color);
 	box-shadow: inset -2px -2px #026495;
-
+	cursor: pointer;
 }
 
 /* center buttons */
@@ -507,6 +507,7 @@ body {
 	background-color: #ffffff;
 	box-shadow: inset -2px -2px gray;
     text-align: center;
+	cursor: pointer;
 }
 
 /* Arrows for switching pages */
